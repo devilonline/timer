@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace timer
         public Form1()
         {
             InitializeComponent();
-            
+
 
         }
 
@@ -37,26 +38,36 @@ namespace timer
                 this.timer1.Stop();
                 MessageBox.Show("fim");
             }
-            
+
 
         }
 
-    
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < 61; i++ )
+            for (int i = 0; i < 61; i++)
             {
-                this.comboBox1.Items.Add(i.ToString());
-                this.comboBox2.Items.Add(i.ToString());
-               
+                this.comboBox1.Items.Add(i.ToString("D2"));
+                this.comboBox2.Items.Add(i.ToString("D2"));
+
 
             }
+
+            string minutos = ConfigurationManager.AppSettings["minutos"];
+            string segundos = ConfigurationManager.AppSettings["segundos"];
+
+            //label3.Text = minutos;
+
+
+            this.comboBox1.SelectedIndex = Int32.Parse(minutos);
+            this.comboBox2.SelectedIndex = Int32.Parse(segundos);
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
+
             timer1.Start();
         }
 
@@ -65,23 +76,16 @@ namespace timer
             timer1.Stop();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
             timer1.Start();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-         
-            
-        }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        public void button1_Click(object sender, EventArgs e)
         {
             int minutes = int.Parse(this.comboBox1.SelectedItem.ToString());
             int seconds = int.Parse(this.comboBox2.SelectedItem.ToString());
@@ -98,6 +102,11 @@ namespace timer
         private void label4_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            //add_time = TotalSeconds.AddMinutes(2);
         }
     }
 }
