@@ -108,5 +108,10 @@ namespace timer
         {
             //add_time = TotalSeconds.AddMinutes(2);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
